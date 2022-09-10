@@ -52,7 +52,7 @@ createPizza({ body }, res) {
 updatePizza({ params, body }, res) {
     //have to set third parameter new to true so that it doesn't return the original
     //.updateOne and .updateMany methods will update without returning
-    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then(dbPizzaData => {
         if (!dbPizzaData) {
           res.status(404).json({ message: 'No pizza found with this id!' });
